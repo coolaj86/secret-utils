@@ -1,0 +1,38 @@
+{
+  "name": "secret-utils",
+  "version": "1.0.0",
+  "description": "Common `crypto` snippets (generate random bytes, salt, hash password, etc)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/coolaj86/secret-utils.git"
+  },
+  "keywords": [
+    "crypto",
+    "hashsum",
+    "md5sum",
+    "sha1sum",
+    "sh256sum",
+    "sha384sum",
+    "sha512sum",
+    "secret",
+    "password",
+    "passphrase",
+    "shadow",
+    "hash",
+    "string",
+    "int",
+    "integer",
+    "number",
+    "range"
+  ],
+  "author": "AJ ONeal <coolaj86@gmail.com> (http://coolaj86.com/)",
+  "license": "Apache2",
+  "bugs": {
+    "url": "https://github.com/coolaj86/secret-utils/issues"
+  },
+  "homepage": "https://github.com/coolaj86/secret-utils"
+}
