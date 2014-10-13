@@ -1,6 +1,6 @@
 {
   "name": "secret-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Common `crypto` snippets (generate random bytes, salt, hash password, etc)",
   "main": "index.js",
   "scripts": {
