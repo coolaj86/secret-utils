@@ -109,3 +109,11 @@ but many of the common use cases for crypto involve very short strings.
 than `require('crypto').createHash('md5').update(val).digest('hex');`
 
 Removing a minor annoyance, that's all.
+
+Thanks
+======
+
+Code snatched from
+
+* `crypto-rand`
+* `urlsafe-base64`

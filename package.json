@@ -34,5 +34,9 @@
   "bugs": {
     "url": "https://github.com/coolaj86/secret-utils/issues"
   },
-  "homepage": "https://github.com/coolaj86/secret-utils"
+  "homepage": "https://github.com/coolaj86/secret-utils",
+  "dependencies": {
+    "crypto-rand": "0.0.2",
+    "urlsafe-base64": "0.0.2"
+  }
 }

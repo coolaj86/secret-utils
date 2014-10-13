@@ -81,8 +81,7 @@ function random(len, encoding) {
 function testSecret(salt, secret, shadow, hashtype) {
   hashtype = hashtype || 'md5';
 
-  var crypto = require('crypto')
-    , hash = crypto.createHash(hashtype)
+  var hash = crypto.createHash(hashtype)
     ;
 
   hash.update(salt);
@@ -92,11 +91,11 @@ function testSecret(salt, secret, shadow, hashtype) {
 }
 
 function md5sum(val) {
-  return require('crypto').createHash('md5').update(val).digest('hex');
+  return crypto.createHash('md5').update(val).digest('hex');
 }
 
 function hashsum(hashtype, val) {
-  return require('crypto').createHash(hashtype).update(val).digest('hex');
+  return crypto.createHash(hashtype).update(val).digest('hex');
 }
 
 // deprecated
