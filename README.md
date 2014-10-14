@@ -15,8 +15,7 @@ npm install secret-utils
 var secretutils = require('secret-utils')
   ;
 
-secretutils.url64(92);
-// NOTE: 96 bytes becomes a 128-char string
+secretutils.url64(96);
 ```
 
 API
@@ -61,6 +60,8 @@ Creates some salt like so: `return url64(len || 32);`
 #### `url64(len)`
 
 Creates a url-safe base64 string with a given entropy
+
+NOTE that a length of 96 bytes would become a 128-char string
 
 ```javascript
 crypto.randomBytes(len || 32)
