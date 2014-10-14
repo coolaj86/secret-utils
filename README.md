@@ -30,7 +30,19 @@ API
   * md5sum
   * alphanum
 
-#### `createShadow(secret[, hashtype[, salt ]])`
+### .createShadow()
+
+`createShadow(secret[, hashtype[, salt ]])`
+
+```javascript
+secretutils.createShadow("secret");
+
+// output
+{ salt: '8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc='
+, shadow: 'f486460617d1501b51e6807c5e4f2ded'
+, hashtype: 'md5'
+}
+```
 
 Given a secret (password, passphrase, etc), returns a shadow, hashtype, and salt.
 
@@ -38,14 +50,16 @@ Given a secret (password, passphrase, etc), returns a shadow, hashtype, and salt
 
 `salt` defaults to `url64(32)`
 
-```javascript
-{ salt: '8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc='
-, shadow: 'f486460617d1501b51e6807c5e4f2ded'
-, hashtype: 'md5'
-}
-```
 
-#### `testSecret(salt, secret, shadow[, hashtype ])`
+
+### .testSecret()
+
+`testSecret(salt, secret, shadow[, hashtype ])`
+
+```javascript
+secretutils.testSecret('8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc=', "secret", 'f486460617d1501b51e6807c5e4f2ded');
+// true
+```
 
 Given a salt, secret, shadow (and hashtype), determine if the secret matches the shadow.
 
@@ -53,15 +67,31 @@ Given a salt, secret, shadow (and hashtype), determine if the secret matches the
 
 returns `true` or `false`
 
-#### `genSalt(len)`
+### .genSalt()
 
-Creates some salt like so: `return url64(len || 32);`
+`genSalt(len)`
 
-#### `url64(len)`
+```javascript
+secretutils.genSalt(32);
+// '8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc='
+```
+
+Alias of `.url64(len)`
+
+### .url64()
+
+`url64(len)`
+
+```javascript
+secretutils.url64(32);
+// '8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc='
+```
 
 Creates a url-safe base64 string with a given entropy
 
 NOTE that a length of 96 bytes would become a 128-char string
+
+Source:
 
 ```javascript
 crypto.randomBytes(len || 32)
@@ -72,31 +102,70 @@ crypto.randomBytes(len || 32)
  ;
 ```
 
-#### `random(len[, encoding])`
+### .random()
+
+`random(len[, encoding])`
+
+```javascript
+secretutils.random(32);
+// <Buffer ce ef 12 c3 47 a9 98 88 1f ... >
+```
 
 Generate a securely random `Buffer` with `len` bytes of entropy, optionally encoded as a string.
 
-#### `int(min, max)`
+### .int()
+
+`int(min, max)`
+
+```javascript
+secretutils.int(1, 6);
+// 1
+```
 
 Generate a securely random 48-bit integer.
 
-#### `hashsum(hashtype, str)`
+### .hashsum()
+
+`hashsum(hashtype, str)`
+
+```javascript
+secretutils.hashsum('md5', '8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc=' + 'secret');
+// 'f486460617d1501b51e6807c5e4f2ded'
+```
 
 Return the hash of a given string. Useful for short strings, not for large buffers.
+
+Source:
 
 ```javascript
 return require('crypto').createHash(hashtype).update(val).digest('hex');
 ```
 
-#### `md5sum(str)`
+### .md5sum()
+
+`md5sum(str)`
+
+```javascript
+secretutils.md5sum('8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc=' + 'secret');
+// 'f486460617d1501b51e6807c5e4f2ded'
+```
 
 Return the md5sum of a given string. Useful for short strings, not for large buffers.
+
+Source:
 
 ```javascript
 return require('crypto').createHash('md5').update(val).digest('hex');
 ```
 
-#### `alphanum(len)`
+### .alphanum()
+
+`alphanum(len)`
+
+```javascript
+secretutils.alphanum(16);
+// ktp827asite9kp7x
+```
 
 Return an alphanumeric (A-Za-z0-9) string (insecure, using `Math.random()`).
 
