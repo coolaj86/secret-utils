@@ -38,8 +38,8 @@ API
 secretutils.createShadow("secret");
 
 // output
-{ salt: '8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc='
-, shadow: 'f486460617d1501b51e6807c5e4f2ded'
+{ salt: '1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc'
+, shadow: '133f928c735d225a8221fdc613fc9c0c'
 , hashtype: 'md5'
 }
 ```
@@ -57,7 +57,7 @@ Given a secret (password, passphrase, etc), returns a shadow, hashtype, and salt
 `testSecret(salt, secret, shadow[, hashtype ])`
 
 ```javascript
-secretutils.testSecret('8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc=', "secret", 'f486460617d1501b51e6807c5e4f2ded');
+secretutils.testSecret('1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc', "secret", '133f928c735d225a8221fdc613fc9c0c');
 // true
 ```
 
@@ -73,7 +73,7 @@ returns `true` or `false`
 
 ```javascript
 secretutils.genSalt(32);
-// '8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc='
+// '1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc'
 ```
 
 Alias of `.url64(len)`
@@ -84,7 +84,7 @@ Alias of `.url64(len)`
 
 ```javascript
 secretutils.url64(32);
-// '8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc='
+// '1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc'
 ```
 
 Creates a url-safe base64 string with a given entropy
@@ -129,8 +129,8 @@ Generate a securely random 48-bit integer.
 `hashsum(hashtype, str)`
 
 ```javascript
-secretutils.hashsum('md5', '8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc=' + 'secret');
-// 'f486460617d1501b51e6807c5e4f2ded'
+secretutils.hashsum('md5', '1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc' + 'secret');
+// '133f928c735d225a8221fdc613fc9c0c'
 ```
 
 Return the hash of a given string. Useful for short strings, not for large buffers.
@@ -146,8 +146,8 @@ return require('crypto').createHash(hashtype).update(val).digest('hex');
 `md5sum(str)`
 
 ```javascript
-secretutils.md5sum('8B3Mfmrt5kXVg9nfIFHxUY9F4ii3bIJGKr7uoQHsTgc=' + 'secret');
-// 'f486460617d1501b51e6807c5e4f2ded'
+secretutils.md5sum('1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc' + 'secret');
+// '133f928c735d225a8221fdc613fc9c0c'
 ```
 
 Return the md5sum of a given string. Useful for short strings, not for large buffers.

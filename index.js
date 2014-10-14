@@ -47,10 +47,19 @@ function int(min, max) {
   return secRand.randInt(min, max);
 }
 
+function url64(len) {
+  var UrlSafeBase64 = require('urlsafe-base64')
+    ;
+
+  return UrlSafeBase64.encode(crypto.randomBytes(len || 32));
+}
+
 function createShadow(secret, hashtype, salt) {
   hashtype = hashtype || 'md5';
 
-  salt = salt || crypto.randomBytes(32).toString('base64');
+  if (!salt) {
+    salt = url64(32);
+  }
 
   var hash = crypto.createHash(hashtype)
     , shadow
@@ -60,14 +69,7 @@ function createShadow(secret, hashtype, salt) {
   hash.update(secret);
   shadow = hash.digest('hex');
 
-  return { salt: salt, secret: shadow, shadow: shadow, type: hashtype, hashtype: hashtype };
-}
-
-function url64(len) {
-  var UrlSafeBase64 = require('urlsafe-base64')
-    ;
-
-  return UrlSafeBase64.encode(crypto.randomBytes(len || 32));
+  return { salt: salt, shadow: shadow, hashtype: hashtype };
 }
 
 function random(len, encoding) {
