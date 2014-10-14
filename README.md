@@ -15,7 +15,8 @@ npm install secret-utils
 var secretutils = require('secret-utils')
   ;
 
-secretutils.url64(96);
+secretutils.url64(32);
+// '1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc'
 ```
 
 API
