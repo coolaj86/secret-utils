@@ -1,6 +1,6 @@
 {
   "name": "secret-utils",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Common `crypto` snippets (generate random bytes, salt, hash password, etc)",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,7 @@
     "crypto",
     "hashsum",
     "md5sum",
+    "shasum",
     "sha1sum",
     "sh256sum",
     "sha384sum",
@@ -29,7 +30,7 @@
     "number",
     "range"
   ],
-  "author": "AJ ONeal <coolaj86@gmail.com> (http://coolaj86.com/)",
+  "author": "AJ ONeal <coolaj86@gmail.com> (https://coolaj86.com/)",
   "license": "Apache2",
   "bugs": {
     "url": "https://github.com/coolaj86/secret-utils/issues"
