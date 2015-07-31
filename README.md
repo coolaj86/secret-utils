@@ -27,7 +27,8 @@ API
   * random
   * int
   * hashsum
-  * md5sum
+  * sha1sum
+  * sha256sum
   * alphanum
 
 ### .createShadow()
@@ -40,13 +41,13 @@ secretutils.createShadow("secret");
 // output
 { salt: '1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc'
 , shadow: '133f928c735d225a8221fdc613fc9c0c'
-, hashtype: 'md5'
+, hashtype: 'sha256'
 }
 ```
 
 Given a secret (password, passphrase, etc), returns a shadow, hashtype, and salt.
 
-`hashtype` defaults to `md5` (despite collisions being possible, I'd hardly say that md5 is "broken")
+`hashtype` defaults to `sha256`
 
 `salt` defaults to `url64(32)`
 
@@ -63,7 +64,7 @@ secretutils.testSecret('1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc', "secret", 
 
 Given a salt, secret, shadow (and hashtype), determine if the secret matches the shadow.
 
-`hashtype` defaults to `md5`
+`hashtype` defaults to `sha256`
 
 returns `true` or `false`
 
@@ -129,7 +130,7 @@ Generate a securely random 48-bit integer.
 `hashsum(hashtype, str)`
 
 ```javascript
-secretutils.hashsum('md5', '1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc' + 'secret');
+secretutils.hashsum('sha1', '1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc' + 'secret');
 // '133f928c735d225a8221fdc613fc9c0c'
 ```
 
@@ -141,21 +142,21 @@ Source:
 return require('crypto').createHash(hashtype).update(val).digest('hex');
 ```
 
-### .md5sum()
+### .sha1sum()
 
-`md5sum(str)`
+`sha1sum(str)`
 
 ```javascript
-secretutils.md5sum('1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc' + 'secret');
+secretutils.sha1sum('1cCk4GzgSDjbuFSRHOrte5_WHW02oYQwaxetY72UxPc' + 'secret');
 // '133f928c735d225a8221fdc613fc9c0c'
 ```
 
-Return the md5sum of a given string. Useful for short strings, not for large buffers.
+Return the sha1sum of a given string. Useful for short strings, not for large buffers.
 
 Source:
 
 ```javascript
-return require('crypto').createHash('md5').update(val).digest('hex');
+return require('crypto').createHash('sha1').update(val).digest('hex');
 ```
 
 ### .alphanum()
@@ -175,8 +176,8 @@ Why?
 Most of the `crypto` functions are built on a stream-esque API,
 but many of the common use cases for crypto involve very short strings.
 
-`md5sum(str)` is simply easier to read (and write) at-a-glance
-than `require('crypto').createHash('md5').update(val).digest('hex');`
+`sha1sum(str)` is simply easier to read (and write) at-a-glance
+than `require('crypto').createHash('sha1').update(val).digest('hex');`
 
 Removing a minor annoyance, that's all.
 

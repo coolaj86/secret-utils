@@ -42,7 +42,7 @@ function alphanum(len) {
 function int(min, max) {
     // rand, randInt(min, max), randRange(n) [0-n)
   var secRand = require('crypto-rand')
-    ;  
+    ;
 
   return secRand.randInt(min, max);
 }
@@ -55,7 +55,7 @@ function url64(len) {
 }
 
 function createShadow(secret, hashtype, salt) {
-  hashtype = hashtype || 'md5';
+  hashtype = hashtype || 'sha256';
 
   if (!salt) {
     salt = url64(32);
@@ -81,7 +81,7 @@ function random(len, encoding) {
 }
 
 function testSecret(salt, secret, shadow, hashtype) {
-  hashtype = hashtype || 'md5';
+  hashtype = hashtype || 'sha256';
 
   var hash = crypto.createHash(hashtype)
     ;
@@ -93,7 +93,24 @@ function testSecret(salt, secret, shadow, hashtype) {
 }
 
 function md5sum(val) {
+  console.warn("[deprecated] md5 is unsupported by webcrypto, please use sha2 where possible");
   return crypto.createHash('md5').update(val).digest('hex');
+}
+
+function hashsum(hashtype, val) {
+  if ('md5' === hashtype.toLowerCase()) {
+
+    console.warn("[deprecated] md5 is unsupported by webcrypto, please use sha2 where possible");
+  }
+  return crypto.createHash(hashtype).update(val).digest('hex');
+}
+
+function sha1sum(val) {
+  return crypto.createHash('sha1').update(val).digest('hex');
+}
+
+function sha256sum(val) {
+  return crypto.createHash('sha256').update(val).digest('hex');
 }
 
 function hashsum(hashtype, val) {
@@ -115,4 +132,7 @@ module.exports.random = random;
 module.exports.alphanum = alphanum;
 module.exports.int = int;
 module.exports.md5sum = md5sum;
+module.exports.shasum = sha1sum;
+module.exports.sha1sum = sha1sum;
+module.exports.sha256sum = sha256sum;
 module.exports.hashsum = hashsum;
